@@ -1,0 +1,6 @@
+<div class="search-box">
+    <%= form_tag("/search", method: "get") do %>
+      <%= text_field_tag :q, nil, placeholder:'Search the site' %>
+      <%= submit_tag("Search") %>
+    <% end %>
+</div>

@@ -1,8 +1,29 @@
 
-<nav class="navbar navbar-light bg-light">
+<nav class="navbar mb-4">
   <%= link_to "Bookmarks", bookmarks_path, class: "navbar-brand" %>
-   <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+  <%= form_with(model: @bookmark, local: true) do |form| %>
+  <% if @bookmark.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(bookmark.errors.count, "error") %> prohibited this bookmark from being saved:</h2>
+
+      <ul>
+      <% @bookmark.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :url %>
+    <%= form.text_field :url %>
+  </div>
+
+  <div class="actions hidden">
+    <%= form.submit %>
+  </div>
+<% end %>
+  <div id="search-box">
+  <!-- SearchBox widget will appear here -->
+</div>
 </nav>

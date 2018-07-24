@@ -12,5 +12,6 @@
 //
 //= require rails-ujs
 //= require activestorage
+//= require algolia/v3/algoliasearch.min
 //= require turbolinks
 //= require_tree .

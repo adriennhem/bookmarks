@@ -1,55 +1,44 @@
 <div class="container">
 
-<%= form_with(model: @bookmark, local: true) do |form| %>
-  <% if @bookmark.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(bookmark.errors.count, "error") %> prohibited this bookmark from being saved:</h2>
+<div id="refinement-list">
+</div>
 
-      <ul>
-      <% @bookmark.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :url %>
-    <%= form.text_field :url %>
-  </div>
-
-  <div class="actions hidden">
-    <%= form.submit %>
-  </div>
-<% end %>
-
-
-<h1>Bookmarks</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Url</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @bookmarks.each do |bookmark| %>
-      <tr>
-        <td><%= link_to "#{LinkThumbnailer.generate(bookmark.url).title}", bookmark.url, target: :_blank  %></td>
-      
-        <td><%= link_to 'Show', bookmark %></td>
-        <td><%= link_to 'Edit', edit_bookmark_path(bookmark) %></td>
-        <td><%= link_to 'Destroy', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Bookmark', new_bookmark_path %>
+<div id="hits">
+</div>
 
 </div>
+
+
+<script>
+  const search = instantsearch({
+  appId: 'JH5PBQKH6H',
+  apiKey: '2887c3d50be0928409ed49d93cfbc6a7',
+  indexName: 'Bookmark',
+  routing: true,
+  // searchParameters: {
+    // filters: 'objectID:9'
+  // }
+});
+
+  // initialize SearchBox
+  search.addWidget(
+    instantsearch.widgets.searchBox({
+      container: '#search-box',
+      placeholder: 'Search for products'   
+    })
+  );
+
+
+  search.addWidget(
+    instantsearch.widgets.hits({
+      container: '#hits',
+      templates: {
+        empty: 'No results',
+        item: '<a href="{{{url}}}"> {{{_highlightResult.title.value}}} {{{_highlightResult.url.value}}}</a>'
+      }
+    })
+  );
+
+search.start();
+</script>
+
