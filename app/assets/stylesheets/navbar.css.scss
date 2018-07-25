@@ -1,9 +1,23 @@
 .navbar {
 	background-color: #fff;
-	border-bottom: 1px solid #eee;
 }
 
+input.ais-search-box--input:focus {
+    outline-width: 0;
+}
 
 .hidden {
 	display: none;
 }
+
+.ais-search-box  {
+	min-width: 200px;
+}
+
+.ais-search-box--input {
+	color: #000;
+	border: none;
+	border-bottom: 1px solid #000;
+	font-weight: 300;
+}
+
