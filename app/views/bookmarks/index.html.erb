@@ -19,6 +19,10 @@
     <%= form.text_field :url, placeholder: "Add a new URL" %>
   </div>
 
+  <div class="field new-bookmark-input">
+    <%= form.hidden_field :viewable_by, value: current_user.id %>
+  </div>
+
   <div class="actions hidden">
     <%= form.submit %>
   </div>
@@ -38,7 +42,7 @@
 <script>
   const search = instantsearch({
   appId: 'JH5PBQKH6H',
-  apiKey: '2887c3d50be0928409ed49d93cfbc6a7',
+  apiKey: '<%= @secured_api_key %>',
   indexName: 'Bookmark',
   routing: true,
   // searchParameters: {

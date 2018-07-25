@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_25_172522) do
+ActiveRecord::Schema.define(version: 2018_07_25_181436) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2018_07_25_172522) do
     t.string "favicon"
     t.string "image"
     t.integer "user_id"
+    t.integer "viewable_by"
   end
 
   create_table "posts", force: :cascade do |t|

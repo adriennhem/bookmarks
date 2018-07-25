@@ -5,6 +5,12 @@ class BookmarksController < ApplicationController
   # GET /bookmarks
   # GET /bookmarks.json
   def index
+
+
+  @secured_api_key = Algolia.generate_secured_api_key(
+  '2887c3d50be0928409ed49d93cfbc6a7',
+   { filters: 'viewable_by:' + current_user.id.to_s }
+)
     @bookmarks = Bookmark.all
     @bookmark = Bookmark.new
   end
@@ -27,6 +33,7 @@ class BookmarksController < ApplicationController
   # POST /bookmarks.json
   def create
     @bookmark = current_user.bookmarks.new(bookmark_params)
+
 
     respond_to do |format|
       if @bookmark.save
@@ -71,6 +78,6 @@ class BookmarksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bookmark_params
-      params.require(:bookmark).permit(:title, :url, :description, :favicon, :image, :user_id)
+      params.require(:bookmark).permit(:title, :url, :description, :favicon, :image, :user_id, :viewable_by)
     end
 end
