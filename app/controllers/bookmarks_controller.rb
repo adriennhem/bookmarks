@@ -1,5 +1,6 @@
 class BookmarksController < ApplicationController
   before_action :set_bookmark, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /bookmarks
   # GET /bookmarks.json
@@ -25,7 +26,7 @@ class BookmarksController < ApplicationController
   # POST /bookmarks
   # POST /bookmarks.json
   def create
-    @bookmark = Bookmark.new(bookmark_params)
+    @bookmark = current_user.bookmarks.new(bookmark_params)
 
     respond_to do |format|
       if @bookmark.save
@@ -70,6 +71,6 @@ class BookmarksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bookmark_params
-      params.require(:bookmark).permit(:title, :url)
+      params.require(:bookmark).permit(:title, :url, :description, :favicon, :image, :user_id)
     end
 end

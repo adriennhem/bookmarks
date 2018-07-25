@@ -28,7 +28,7 @@ gem 'jquery-rails'
 
 gem "algoliasearch-rails"
 
-
+gem 'devise'
 
 gem 'link_thumbnailer'
 
