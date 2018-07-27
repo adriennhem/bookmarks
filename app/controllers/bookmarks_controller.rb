@@ -6,7 +6,6 @@ class BookmarksController < ApplicationController
   # GET /bookmarks.json
   def index
 
-
   @secured_api_key = Algolia.generate_secured_api_key(
   '2887c3d50be0928409ed49d93cfbc6a7',
    { filters: 'viewable_by:' + current_user.id.to_s }

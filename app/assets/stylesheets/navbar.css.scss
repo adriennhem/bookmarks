@@ -10,14 +10,28 @@ input.ais-search-box--input:focus {
 	display: none;
 }
 
+
 .ais-search-box  {
-	min-width: 200px;
 }
 
 .ais-search-box--input {
 	color: #000;
 	border: none;
-	border-bottom: 1px solid #000;
 	font-weight: 300;
 }
 
+.new-bookmark {
+	margin: 0 auto;
+}
+
+
+.bookmark-container {
+	border-bottom: 1px solid #eee;
+	padding: 5px 5px;
+	margin: 0 auto;
+	margin-bottom: 10px;
+}
+
+.bookmark-container a {
+	font-size: 20px;
+}

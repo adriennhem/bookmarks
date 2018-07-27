@@ -1,7 +1,7 @@
 <div class="container">
 
 
-<div class="new-bookmark mb-2">
+<div class="new-bookmark mb-2 col-md-7">
  <%= form_with(model: @bookmark, local: true) do |form| %>
   <% if @bookmark.errors.any? %>
     <div id="error_explanation">
@@ -39,14 +39,19 @@
 </div>
 
 
+
+
 <script>
   const search = instantsearch({
   appId: 'JH5PBQKH6H',
   apiKey: '<%= @secured_api_key %>',
   indexName: 'Bookmark',
   routing: true,
-  // searchParameters: {
-    // filters: 'objectID:9'
+  searchParameters: {
+    attributesToSnippet: [
+  'description:31;'
+    ]
+  }
   
 });
 
@@ -65,7 +70,7 @@
       container: '#hits',
       templates: {
         empty: 'No results',
-        item: '<img src="{{{favicon}}}"></img> <a href="{{{url}}}"> {{{_highlightResult.title.value}}} {{{_highlightResult.url.value}}}</a>'
+        item: '<div class="bookmark-container col-md-7"><a href="{{{url}}}"> {{{_highlightResult.title.value}}} {{{_highlightResult.url.value}}}</a><div class="bookmark-description">{{{_snippetResult.description.value}}}</div></div>'
       }
     })
   );
