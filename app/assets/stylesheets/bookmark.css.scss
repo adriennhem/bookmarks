@@ -8,16 +8,28 @@ a {
 }
 
 .new-bookmark {
-	width: 50%;
-	border-bottom: 1px solid #000;
-	border-top: 1px solid #000;
+	margin: 0 auto;
+	border-bottom: 1px solid #eee;
+	padding-bottom: 10px;
+	margin-bottom: 50px;
 }
 
 .new-bookmark input {
 	border: none;
+	width: 100% !important;
+	font-size: 18px;
+	font-weight: 300;
 }
 
+
+
 .new-bookmark-input {
-	width: 100%;
+	
 }
+
+
+
+
+
+
 

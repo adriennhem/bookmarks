@@ -12,6 +12,10 @@
 //
 //= require rails-ujs
 //= require activestorage
+//= require jquery3
+//= require popper
+//= require bootstrap-sprockets
+//= require bootstrap
 //= require algolia/v3/algoliasearch.min
 //= require turbolinks
 //= require_tree .

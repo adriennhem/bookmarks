@@ -1,27 +1,27 @@
-<%= form_with(model: bookmark, local: true) do |form| %>
-  <% if bookmark.errors.any? %>
+<div class="new-bookmark mb-2 col-md-7">
+ <%= form_with(model: @bookmark, local: true) do |form| %>
+  <% if @bookmark.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(bookmark.errors.count, "error") %> prohibited this bookmark from being saved:</h2>
-
       <ul>
-      <% bookmark.errors.full_messages.each do |message| %>
+      <% @bookmark.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+  <div class="field new-bookmark-input">
+    <%= form.text_field :url, placeholder: "Add a new URL" %>
   </div>
 
-  <div class="field">
-    <%= form.label :url %>
-    <%= form.text_field :url %>
+  <div class="field new-bookmark-input">
+    <%= form.hidden_field :viewable_by, value: current_user.id %>
   </div>
 
-  <div class="actions">
+  <div class="actions hidden">
     <%= form.submit %>
   </div>
 <% end %>
+
+</div>

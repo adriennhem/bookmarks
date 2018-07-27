@@ -1,34 +1,8 @@
 <div class="container">
 
-
-<div class="new-bookmark mb-2 col-md-7">
- <%= form_with(model: @bookmark, local: true) do |form| %>
-  <% if @bookmark.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(bookmark.errors.count, "error") %> prohibited this bookmark from being saved:</h2>
-
-      <ul>
-      <% @bookmark.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field new-bookmark-input">
-    <%= form.text_field :url, placeholder: "Add a new URL" %>
-  </div>
-
-  <div class="field new-bookmark-input">
-    <%= form.hidden_field :viewable_by, value: current_user.id %>
-  </div>
-
-  <div class="actions hidden">
-    <%= form.submit %>
-  </div>
-<% end %>
-
+ <div id="search-box" class="col-md-7">
 </div>
+
 
 <div id="refinement-list">
 </div>
@@ -36,6 +10,56 @@
 <div id="hits">
 </div>
 
+</div>
+
+<script>
+  $('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
+</script>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add link</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= form_with(model: @bookmark, local: true) do |form| %>
+          <% if @bookmark.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(bookmark.errors.count, "error") %> prohibited this bookmark from being saved:</h2>
+              <ul>
+              <% @bookmark.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="field new-bookmark-input">
+            <%= form.text_field :url, placeholder: "Add a new URL", autocomplete: :off %>
+          </div>
+
+          <div class="field new-bookmark-input">
+            <%= form.hidden_field :viewable_by, value: current_user.id %>
+          </div>
+
+          <div class="actions hidden">
+            <%= form.submit %>
+          </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 
@@ -60,7 +84,7 @@
     instantsearch.widgets.searchBox({
       container: '#search-box',
       focus: false,
-      placeholder: 'Search for products'
+      placeholder: 'Search bookmarks, tags, etc...'
     })
   );
 
@@ -77,4 +101,8 @@
 
 search.start();
 </script>
+
+
+
+
 
