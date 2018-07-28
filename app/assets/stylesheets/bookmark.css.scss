@@ -7,11 +7,12 @@ a {
 	color: #000 !important;
 }
 
+a:focus {
+	outline-width: 0;
+}
+
 .new-bookmark {
-	margin: 0 auto;
-	border-bottom: 1px solid #eee;
 	padding-bottom: 10px;
-	margin-bottom: 50px;
 }
 
 .new-bookmark input {
